@@ -1,6 +1,6 @@
 provider "aws" {
     
     region = "ap-southeast-1"
-    profile = "#your profile here" 
+    profile = "nthn2" 
   
 }
