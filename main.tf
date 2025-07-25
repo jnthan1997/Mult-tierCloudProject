@@ -14,11 +14,13 @@ resource "aws_instance" "ec2-jumpserver" {
 
 resource "aws_instance" "fronted-ec2-az1" {
 
+    count = 2
     ami = "ami-01938df366ac2d954"
     instance_type = "t2.micro"
-    subnet_id = aws_subnet.public-subnet-az1.id
+    subnet_id = element(local.public-subnet, count.index)
     vpc_security_group_ids = [ aws_security_group.frontend-sg.id ]
     key_name = aws_key_pair.ssh-key.id
+    user_data = file("nginx.sh")
 
     tags = {
       Name = "Front End EC2"

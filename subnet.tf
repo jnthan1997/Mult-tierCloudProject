@@ -69,3 +69,10 @@ resource "aws_subnet" "private-subnet-az2" {
     }
   
 }
+
+locals {
+  public-subnet = [
+    aws_subnet.public-subnet-az1.id,
+    aws_subnet.public-subnet-az2.id
+  ]
+}
